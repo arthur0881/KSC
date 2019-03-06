@@ -1,0 +1,146 @@
+﻿
+
+@model IEnumerable<KSC.Models.PlayerDataViewModel>
+
+@{
+    ViewBag.Title = "ViewPlayerData";
+}
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <font color="#FFF2F2" size="5"><strong>玩家個人數據</strong></font>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("返回首頁", "KSC_MainPage", "KS_CRUD", new { area = "" }, new { @class = "navbar-brand" })</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="form-group">
+
+    <table width="100%" border="1" cellspacing="0" cellpadding="2">
+        <tr style="height: 70px">
+            <th width="10%" class="field-name" style="background-color:lightcoral;text-align:center">玩家列表</th>
+            <td class="field-name" width="90%">
+
+                <input class="btn btn-primary " style="width:23%; margin-left:3px;margin-right:3px;margin-top:2px;margin-bottom:2px" type="button" id="PL01" value="Arturia" />
+                <input class="btn btn-primary " style="width:23%; margin-left:3px;margin-right:3px;margin-top:2px;margin-bottom:2px" type="button" id="PL02" value="david41802" />
+                <input class="btn btn-primary " style="width:23%; margin-left:3px;margin-right:3px;margin-top:2px;margin-bottom:2px" type="button" id="PL03" value="ECBTECBTECBT" />
+                <input class="btn btn-primary " style="width:23%; margin-left:3px;margin-right:3px;margin-top:2px;margin-bottom:2px" type="button" id="PL04" value="qs2x16" />
+                <input class="btn btn-primary " style="width:23%; margin-left:3px;margin-right:3px;margin-top:2px;margin-bottom:2px" type="button" id="PL05" value="LightShen" />
+                <input class="btn btn-primary " style="width:23%; margin-left:3px;margin-right:3px;margin-top:2px;margin-bottom:2px" type="button" id="PL06" value="yingsyuan" />
+                <input class="btn btn-primary " style="width:23%; margin-left:3px;margin-right:3px;margin-top:2px;margin-bottom:2px" type="button" id="PL07" value="Moon" />
+                <input class="btn btn-primary " style="width:23%; margin-left:3px;margin-right:3px;margin-top:2px;margin-bottom:2px" type="button" id="PL08" value="SmallBlueLight" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<body style="background-color:#C4C4C4">
+    <div id="Player_Data_PartialView"></div>
+
+</body>
+
+@section scripts
+{
+    <script type="text/javascript">
+
+            $(document).ready(function () {
+
+
+                $('#PL01').click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/PlayerData/Player_Arturia_PartialView/",
+                        success: function (viewHTML) {
+                            $("#Player_Data_PartialView").html(viewHTML);
+                        },
+                    });
+                });
+
+               $('#PL02').click(function () {
+                   $.ajax({
+                       type: "POST",
+                       url: "/PlayerData/Player_david41802_PartialView/",
+                       success: function (viewHTML) {
+                           $("#Player_Data_PartialView").html(viewHTML);
+                       },
+                   });
+
+               });
+
+                $('#PL03').click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/PlayerData/Player_ECBTECBTECBT_PartialView/",
+                        success: function (viewHTML) {
+                            $("#Player_Data_PartialView").html(viewHTML);
+                        },
+                    });
+
+                });
+
+                 $('#PL04').click(function () {
+                     $.ajax({
+                         type: "POST",
+                         url: "/PlayerData/Player_qs2x16_PartialView/",
+                         success: function (viewHTML) {
+                             $("#Player_Data_PartialView").html(viewHTML);
+                         },
+                     });
+
+                });
+
+                $('#PL05').click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/PlayerData/Player_LightShen_PartialView/",
+                        success: function (viewHTML) {
+                            $("#Player_Data_PartialView").html(viewHTML);
+                        },
+                    });
+
+                });
+
+                $('#PL06').click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/PlayerData/Player_yingsyuan_PartialView/",
+                        success: function (viewHTML) {
+                            $("#Player_Data_PartialView").html(viewHTML);
+                        },
+                    });
+
+                });
+
+                $('#PL07').click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/PlayerData/Player_Moon_PartialView/",
+                        success: function (viewHTML) {
+                            $("#Player_Data_PartialView").html(viewHTML);
+                        },
+                    });
+
+                });
+
+                $('#PL08').click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/PlayerData/Player_SmallBlueLight_PartialView/",
+                        success: function (viewHTML) {
+                            $("#Player_Data_PartialView").html(viewHTML);
+                        },
+                    });
+
+                });
+
+            });
+
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

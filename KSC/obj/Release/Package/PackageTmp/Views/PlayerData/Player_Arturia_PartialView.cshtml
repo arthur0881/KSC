@@ -1,0 +1,116 @@
+﻿@model IEnumerable<KSC.Models.PlayerDataViewModel>
+
+
+@{
+    ViewBag.Title = "";
+    Layout = null;
+}
+
+<table class="table">
+    <tr>
+        <th style="background-color:darkorange">
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.PlayerName)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.UsedHero)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.Kill_Number)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.Death_Number)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.Assist_Number)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.MinionKill)
+        </th>
+        <th></th>
+    </tr>
+    <tr>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.Damage)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.BeDamage)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.KDA)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.DamagePerKill)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.BeDamagePerDeath)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.KillParticipate)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.BeKillParticipate)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.Result)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr style="border-top:3px solid black">
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsedHero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kill_Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Death_Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assist_Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinionKill)
+            </td>
+        </tr>
+        <tr style="border-bottom:3px solid black">
+            <td>
+                @Html.DisplayFor(modelItem => item.Damage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeDamage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KDA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DamagePerKill)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeDamagePerDeath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KillParticipate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeKillParticipate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Result)
+            </td>
+        </tr>
+    }
+
+</table>

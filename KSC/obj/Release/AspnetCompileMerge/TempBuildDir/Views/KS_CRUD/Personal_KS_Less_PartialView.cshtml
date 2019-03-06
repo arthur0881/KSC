@@ -1,0 +1,70 @@
+﻿@model IEnumerable<KSC.Models.PersonalAchievementViewModel>
+
+
+@{
+    ViewBag.Title = "ViewPersonalAchievement";
+    Layout = null;
+}
+
+<h3>慈善王&義工大隊長 紀錄保持人</h3>
+<table class="table" title="最尾紀錄保持人">
+    <tr>
+        <th style="background-color:darkorange">
+            @Html.DisplayNameFor(model => model.DamagePerKill)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.PlayerName)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.UsedHero)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.Kill_Number)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.Damage)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.TotalKill_Allied)
+        </th>
+        <th style="background-color:lightblue">
+            @Html.DisplayNameFor(model => model.Result)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th style="background-color:darkorange">
+                @Html.DisplayFor(modelItem => item.DamagePerKill)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Date)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.PlayerName)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.UsedHero)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Kill_Number)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Damage)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.TotalKill_Allied)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Result)
+            </th>
+            <th></th>
+        </tr>
+    }
+
+</table>

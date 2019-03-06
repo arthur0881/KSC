@@ -1,0 +1,549 @@
+﻿@model KSC.Models.CreateViewModel
+
+@{
+    ViewBag.Title = "Create";
+
+}
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <font color="#FFF2F2" size="5"><strong>新增比賽資料</strong></font>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("返回首頁", "KSC_MainPage", "KS_CRUD", new { area = "" }, new { @class = "navbar-brand" })</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+
+            <table width="100%" border="1" cellspacing="0" cellpadding="2">
+                <tr style="height: 30px">
+                    <th width="10%" class="field-name" style="background-color:lightcoral">遊戲日期</th>
+                    <td>
+                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                    </td>
+
+                    <th width="15%" class="field-name" style="background-color:lightcoral">遊戲時間</th>
+                    <td width="20%" class="field-input">
+                        <div class="col-md-10" style="width:40%">
+                            @Html.EditorFor(model => model.GameTime_M, new { htmlAttributes = new { @class = "form-control" } })分
+                            @Html.ValidationMessageFor(model => model.GameTime_M, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-10" style="width:40%">
+                            @Html.EditorFor(model => model.GameTime_S, new { htmlAttributes = new { @class = "form-control" } })秒
+                            @Html.ValidationMessageFor(model => model.GameTime_S, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightcoral">遊戲結果</th>
+                    <td width="20%" class="field-input">
+                        @Html.RadioButtonFor(model => model.Result, "Victory", new { htmlAttributes = new { @class = "form-control" }, value = "Victory" })Victory
+                        @Html.RadioButtonFor(model => model.Result, "Defeat", new { htmlAttributes = new { @class = "form-control" }, value = "Defeat" })Defeat
+                        @Html.ValidationMessageFor(model => model.Result, "", new { @class = "text-danger" })
+                    </td>
+                    @*<th width="15%" class="field-name" style="background-color:lightcoral">玩家數量</th>
+                    <td width="20%" class="field-input">
+                        @Html.DropDownListFor(model => model.PlayerAmount, ViewBag.SelectPlayerAmount as List<SelectListItem>, new { htmlAttributes = new { @class = "form-control" }, @class = "form-control selectpicker", id = "PlayerAmount", onchange = "ChangeAmount();" })
+                        @Html.ValidationMessageFor(model => model.PlayerAmount, "", new { @class = "text-danger" })
+                    </td>*@
+                </tr>
+                @*<tr style="height: 30px">
+                    <th width="10%" class="field-name" style="background-color:lightcoral">遊戲結果</th>
+                    <td width="20%" class="field-input">
+                        @Html.RadioButtonFor(model => model.Result, "Victory", new { htmlAttributes = new { @class = "form-control" }, value = "Victory" })Victory
+                        @Html.RadioButtonFor(model => model.Result, "Defeat", new { htmlAttributes = new { @class = "form-control" }, value = "Defeat" })Defeat
+                        @Html.ValidationMessageFor(model => model.Result, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightcoral">風向</th>
+                    <td width="20%" class="field-input">
+                        @Html.RadioButtonFor(model => model.Wind, "Good", new { htmlAttributes = new { @class = "form-control" }, value = "Good" })順風
+                        @Html.RadioButtonFor(model => model.Wind, "Bad", new { htmlAttributes = new { @class = "form-control" }, value = "Bad" })逆風
+                        @Html.RadioButtonFor(model => model.Wind, "Normal", new { htmlAttributes = new { @class = "form-control" }, value = "Normal" })一般
+                        @Html.ValidationMessageFor(model => model.Wind, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="20%" class="field-name" style="background-color:lightcoral">打星號(EX:有人跳OR其他原因)</th>
+                    <td width="10%" class="field-input">
+                        @Html.CheckBoxFor(model => model.IsAFK, new { htmlAttributes = new { @class = "form-control", value = "true" } })Yes
+                    </td>
+                </tr>*@
+                <tr style="height: 30px">
+                    <th width="" class="field-name" style="background-color:lightcoral">我方總擊殺數</th>
+                    <td width="" class="field-input">
+                        @Html.EditorFor(model => model.TotalKill_Allied, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TotalKill_Allied, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="" class="field-name" style="background-color:lightcoral">敵方總擊殺數</th>
+                    <td width="" class="field-input">
+                        @Html.EditorFor(model => model.TotalKill_Enemy, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TotalKill_Enemy, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="15%" class="field-name" style="background-color:lightcoral">玩家數量</th>
+                    <td width="20%" class="field-input">
+                        @Html.DropDownListFor(model => model.PlayerAmount, ViewBag.SelectPlayerAmount as List<SelectListItem>, new { htmlAttributes = new { @class = "form-control" }, @class = "form-control selectpicker", id = "PlayerAmount", onchange = "ChangeAmount();" })
+                        @Html.ValidationMessageFor(model => model.PlayerAmount, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                @*<tr style="height: 30px">
+                    <th width="20%" class="field-name" style="background-color:lightcoral">打星號(EX:有人跳OR其他原因)</th>
+                    <td width="10%" class="field-input">
+                        @Html.CheckBoxFor(model => model.IsAFK, new { htmlAttributes = new { @class = "form-control", value = "true" } })Yes
+                    </td>
+                </tr>*@
+            </table>
+            <br>
+            <table width="100%" border="1" cellspacing="0" cellpadding="2" id="Player1">
+                <tr style="height: 20px">
+                    <th width="10%" class="field-name" style="background-color:lightblue">玩家1</th>
+                    <td width="10%" class="field-input" id="P1_1">
+                        @Html.DropDownListFor(model => model.Player1, ViewBag.SelectPlayerList as List<SelectListItem>, new { htmlAttributes = new { @class = "form-control" }, @class = "form-control selectpicker", id = "SP1" })
+                        @Html.ValidationMessageFor(model => model.Player1, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">使用英雄</th>
+                    <td width="10%" class="field-input" id="P1_2">
+                        @Html.DropDownListFor(model => model.UsedHero1, ViewBag.SelectHeroList as List<SelectListItem>, new
+                   {
+                       htmlAttributes = new { @class = "form-control" },
+                       @class = "form-control selectpicker",
+                       data_live_search = "true",
+                       id = "SH1"
+                   })
+
+                        @*@Html.ValidationMessageFor(model => model.UsedHero1, "", new { @class = "text-danger" })*@
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <th width="10%" class="field-name" style="background-color:lightblue">殺人數</th>
+                    <td width="23%" class="field-input" id="P1_3">
+                        @Html.EditorFor(model => model.Kill_Number1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Kill_Number1, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">死亡數</th>
+                    <td width="23%" class="field-input" id="P1_4">
+                        @Html.EditorFor(model => model.Death_Number1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Death_Number1, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">助攻數</th>
+                    <td width="23%" class="field-input" id="P1_5">
+                        @Html.EditorFor(model => model.Assist_Number1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Assist_Number1, "", new { @class = "text-danger" })
+                    </td>
+                    @*<th width="10%" class="field-name" style="background-color:lightblue">吃兵數</th>
+                    <td width="15%" class="field-input" id="P1_6">
+                        @Html.EditorFor(model => model.MinionKill1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MinionKill1, "", new { @class = "text-danger" })
+                    </td>*@
+                </tr>
+                <tr>
+                    <th width="10%" class="field-name" style="background-color:lightblue">造成傷害</th>
+                    <td width="23%" class="field-input">
+                        @Html.EditorFor(model => model.Damage1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Damage1, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">承受傷害</th>
+                    <td width="23%" class="field-input">
+                        @Html.EditorFor(model => model.BeDamage1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BeDamage1, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue"></th>
+                    <td width="23%" class="field-input">
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <table width="100%" border="1" cellspacing="0" cellpadding="2" id="Player2">
+                <tr style="height: 20px">
+                    <th width="10%" class="field-name" style="background-color:lightblue">玩家2</th>
+                    <td width="10%" class="field-input" id="P2_1">
+                        @Html.DropDownListFor(model => model.Player2, ViewBag.SelectPlayerList as List<SelectListItem>, new { htmlAttributes = new { @class = "form-control" }, @class = "form-control selectpicker", id = "SP2" })
+                        @Html.ValidationMessageFor(model => model.Player2, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">使用英雄</th>
+                    <td width="10%" class="field-input" id="P2_2">
+                        @Html.DropDownListFor(model => model.UsedHero2, ViewBag.SelectHeroList as List<SelectListItem>,  new
+                   {
+                       htmlAttributes = new { @class = "form-control" },
+                       @class = "form-control selectpicker",
+                       data_live_search = "true",
+                       id = "SH2"
+                   })
+                        @*@Html.ValidationMessageFor(model => model.UsedHero2, "", new { @class = "text-danger" })*@
+                    </td>
+
+                </tr>
+                <tr>
+                    <th width="10%" class="field-name" style="background-color:lightblue">殺人數</th>
+                    <td width="23%" class="field-input" id="P2_3">
+                        @Html.EditorFor(model => model.Kill_Number2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Kill_Number2, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">死亡數</th>
+                    <td width="23%" class="field-input" id="P2_4">
+                        @Html.EditorFor(model => model.Death_Number2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Death_Number2, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">助攻數</th>
+                    <td width="23%" class="field-input" id="P2_5">
+                        @Html.EditorFor(model => model.Assist_Number2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Assist_Number2, "", new { @class = "text-danger" })
+                    </td>
+                    @*<th width="10%" class="field-name" style="background-color:lightblue">吃兵數</th>
+                    <td width="15%" class="field-input" id="P2_6">
+                        @Html.EditorFor(model => model.MinionKill2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MinionKill2, "", new { @class = "text-danger" })
+                    </td>*@
+                </tr>
+                <tr>
+                    <th width="10%" class="field-name" style="background-color:lightblue">造成傷害</th>
+                    <td width="23%" class="field-input">
+                        @Html.EditorFor(model => model.Damage2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Damage2, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">承受傷害</th>
+                    <td width="23%" class="field-input">
+                        @Html.EditorFor(model => model.BeDamage2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BeDamage2, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue"></th>
+                    <td width="23%" class="field-input"></td>
+                </tr>
+            </table>
+            <br>
+            <table width="100%" border="1" cellspacing="0" cellpadding="2" id="Player3">
+                <tr style="height: 20px">
+                    <th width="10%" class="field-name" style="background-color:lightblue">玩家3</th>
+                    <td width="10%" class="field-input" id="P3_1">
+                        @Html.DropDownListFor(model => model.Player3, ViewBag.SelectPlayerList as List<SelectListItem>, new { htmlAttributes = new { @class = "form-control" }, @class = "form-control selectpicker", id = "SP3" })
+                        @Html.ValidationMessageFor(model => model.Player3, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">使用英雄</th>
+                    <td width="10%" class="field-input" id="P3_2">
+                        @Html.DropDownListFor(model => model.UsedHero3, ViewBag.SelectHeroList as List<SelectListItem>, new
+                   {
+                       htmlAttributes = new { @class = "form-control" },
+                       @class = "form-control selectpicker",
+                       data_live_search = "true",
+                       id = "SH3"
+                   })
+                        @*@Html.ValidationMessageFor(model => model.UsedHero3, "", new { @class = "text-danger" })*@
+                    </td>
+                </tr>
+                <tr>
+                    <th width="10%" class="field-name" style="background-color:lightblue">殺人數</th>
+                    <td width="23%" class="field-input" id="P3_3">
+                        @Html.EditorFor(model => model.Kill_Number3, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Kill_Number3, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">死亡數</th>
+                    <td width="23%" class="field-input" id="P3_4">
+                        @Html.EditorFor(model => model.Death_Number3, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Death_Number3, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">助攻數</th>
+                    <td width="23%" class="field-input" id="P3_5">
+                        @Html.EditorFor(model => model.Assist_Number3, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Assist_Number3, "", new { @class = "text-danger" })
+                    </td>
+                    @*<th width="10%" class="field-name" style="background-color:lightblue">吃兵數</th>
+                    <td width="15%" class="field-input" id="P3_6">
+                        @Html.EditorFor(model => model.MinionKill3, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MinionKill3, "", new { @class = "text-danger" })
+                    </td>*@
+                </tr>
+                <tr>
+                    <th width="10%" class="field-name" style="background-color:lightblue">造成傷害</th>
+                    <td width="23%" class="field-input">
+                        @Html.EditorFor(model => model.Damage3, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Damage3, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">承受傷害</th>
+                    <td width="23%" class="field-input">
+                        @Html.EditorFor(model => model.BeDamage3, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BeDamage3, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue"></th>
+                    <td width="23%" class="field-input"></td>
+                </tr>
+            </table>
+            <br>
+            <table width="100%" border="1" cellspacing="0" cellpadding="2" id="Player4" style="display:none" >
+                <tr style="height: 20px">
+                    <th width="10%" class="field-name" style="background-color:lightblue">玩家4</th>
+                    <td width="10%" class="field-input" id="P4_1">
+                        @Html.DropDownListFor(model => model.Player4, ViewBag.SelectPlayerList as List<SelectListItem>, new { htmlAttributes = new { @class = "form-control" }, @class = "form-control selectpicker", id = "SP4" })
+                        @Html.ValidationMessageFor(model => model.Player4, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">使用英雄</th>
+                    <td width="10%" class="field-input" id="P4_2">
+                        @Html.DropDownListFor(model => model.UsedHero4, ViewBag.SelectHeroList as List<SelectListItem>, new
+                   {
+                       htmlAttributes = new { @class = "form-control" },
+                       @class = "form-control selectpicker",
+                       data_live_search = "true",
+                       id = "SH4"
+                   })
+                        @*@Html.ValidationMessageFor(model => model.UsedHero4, "", new { @class = "text-danger" })*@
+                    </td>
+                </tr>
+                <tr>
+                    <th width="10%" class="field-name" style="background-color:lightblue">殺人數</th>
+                    <td width="23%" class="field-input" id="P4_3">
+                        @Html.EditorFor(model => model.Kill_Number4, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Kill_Number4, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">死亡數</th>
+                    <td width="23%" class="field-input" id="P4_4">
+                        @Html.EditorFor(model => model.Death_Number4, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Death_Number4, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">助攻數</th>
+                    <td width="23%" class="field-input" id="P4_5">
+                        @Html.EditorFor(model => model.Assist_Number4, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Assist_Number4, "", new { @class = "text-danger" })
+                    </td>
+                    @*<th width="10%" class="field-name" style="background-color:lightblue">吃兵數</th>
+                    <td width="15%" class="field-input" id="P4_6">
+                        @Html.EditorFor(model => model.MinionKill4, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MinionKill4, "", new { @class = "text-danger" })
+                    </td>*@
+                </tr>
+                <tr>
+                    <th width="10%" class="field-name" style="background-color:lightblue">造成傷害</th>
+                    <td width="23%" class="field-input">
+                        @Html.EditorFor(model => model.Damage4, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Damage4, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">承受傷害</th>
+                    <td width="23%" class="field-input">
+                        @Html.EditorFor(model => model.BeDamage4, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BeDamage4, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue"></th>
+                    <td width="23%" class="field-input"></td>
+                </tr>
+            </table>
+            <br>
+            <table width="100%" border="1" cellspacing="0" cellpadding="2" id="Player5"  style="display:none">
+                <tr style="height: 20px">
+                    <th width="10%" class="field-name" style="background-color:lightblue">玩家5</th>
+                    <td width="10%" class="field-input" id="P5_1">
+                        @Html.DropDownListFor(model => model.Player5, ViewBag.SelectPlayerList as List<SelectListItem>, new { htmlAttributes = new { @class = "form-control" }, @class = "form-control selectpicker", id = "SP5" })
+                        @Html.ValidationMessageFor(model => model.Player5, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">使用英雄</th>
+                    <td width="10%" class="field-input" id="P5_2">
+                        @Html.DropDownListFor(model => model.UsedHero5, ViewBag.SelectHeroList as List<SelectListItem>, new
+                   {
+                       htmlAttributes = new { @class = "form-control" },
+                       @class = "form-control selectpicker",
+                       data_live_search = "true",
+                       id = "SH5"
+                   })
+                        @*@Html.ValidationMessageFor(model => model.UsedHero5, "", new { @class = "text-danger" })*@
+                    </td>
+                </tr>
+                <tr>
+                    <th width="10%" class="field-name" style="background-color:lightblue">殺人數</th>
+                    <td width="23%" class="field-input" id="P5_3">
+                        @Html.EditorFor(model => model.Kill_Number5, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Kill_Number5, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">死亡數</th>
+                    <td width="23%" class="field-input" id="P5_4">
+                        @Html.EditorFor(model => model.Death_Number5, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Death_Number5, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">助攻數</th>
+                    <td width="23%" class="field-input" id="P5_5">
+                        @Html.EditorFor(model => model.Assist_Number5, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Assist_Number5, "", new { @class = "text-danger" })
+                    </td>
+                    @*<th width="10%" class="field-name" style="background-color:lightblue">吃兵數</th>
+                    <td width="15%" class="field-input" id="P5_6">
+                        @Html.EditorFor(model => model.MinionKill5, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MinionKill5, "", new { @class = "text-danger" })
+                    </td>*@
+                </tr>
+                <tr>
+                    <th width="10%" class="field-name" style="background-color:lightblue">造成傷害</th>
+                    <td width="23%" class="field-input">
+                        @Html.EditorFor(model => model.Damage5, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Damage5, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue">承受傷害</th>
+                    <td width="23%" class="field-input">
+                        @Html.EditorFor(model => model.BeDamage5, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BeDamage5, "", new { @class = "text-danger" })
+                    </td>
+                    <th width="10%" class="field-name" style="background-color:lightblue"></th>
+                    <td width="23%" class="field-input"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" id="check" value="檢查" style="width:150px; font-size:20px;font-weight:700;" class="btn btn-primary" onclick="CheckForm()" />
+            </div>
+        </div>
+        <div class="form-group" id="SubmitButton" style="display:none">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="create" value="送出" style="width:150px; font-size:20px;font-weight:700;" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+
+}
+
+@*<div>
+        @Html.ActionLink("返回首頁", "KSC_MainPage")
+    </div>*@
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/i18n/defaults-*.min.js"></script>
+
+
+@section scripts
+{
+
+
+    <script>
+      
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker({
+                liveSearch: true
+            });
+        });
+
+        function ChangeAmount() {
+            ////   alert(document.getElementById("PlayerAmount").value);
+            //alert($("#SP1").val());
+            if (document.getElementById("PlayerAmount").value == 3) {
+                $("#Player4").attr("style", { "display": "none" });
+                $("#Player5").attr("style", { "display": "none" });
+                document.getElementById("Player4").style.display = "none";
+                document.getElementById("Player5").style.display = "none";
+
+            }
+            if (document.getElementById("PlayerAmount").value == 4) {
+                $("#Player4").attr("style", { "display": "none" });
+                $("#Player5").attr("style", { "display": "none" });
+                document.getElementById("Player4").style.display = "block";
+                document.getElementById("Player5").style.display = "none";
+                $("#Player4").removeAttr("style");
+            }
+            if (document.getElementById("PlayerAmount").value == 5) {
+                $("#Player4").attr("style", { "display": "none" });
+                $("#Player5").attr("style", { "display": "none" });
+                document.getElementById("Player4").style.display = "block";
+                document.getElementById("Player5").style.display = "block";
+                $("#Player4").removeAttr("style");
+                $("#Player5").removeAttr("style");
+            }
+        }
+
+        function CheckForm() {
+            var x = 0;
+
+            if ($("#PlayerAmount").val() >= 3) {
+                if ($("#SP1").val() == "0" || $("#SP2").val() == "0" || $("#SP3").val() == "0") {
+                    alert("未選擇玩家");
+                    x = 1;
+                } else if ($("#PlayerAmount").val() >= 4) {
+                    if ($("#SP4").val() == "0") {
+                        alert("未選擇玩家");
+                        x = 1;
+                    } else if ($("#PlayerAmount").val() == 5) {
+                        if ($("#SP5").val() == "0") {
+                            alert("未選擇玩家");
+                            x = 1;
+                        }
+                    }
+                }
+            }
+
+            if ($("#PlayerAmount").val() >= 3) {
+                if ($("#SH1").val() == "0" || $("#SH2").val() == "0" || $("#SH3").val() == "0") {
+                    alert("未選擇英雄");
+                    x = 1;
+                } else if ($("#PlayerAmount").val() >= 4) {
+                    if ($("#SH4").val() == "0") {
+                        alert("未選擇英雄");
+                        x = 1;
+                    } else if ($("#PlayerAmount").val() == 5) {
+                        if ($("#SH5").val() == "0") {
+                            alert("未選擇英雄");
+                            x = 1;
+                        }
+                    }
+                }
+            }
+
+
+            if ($("#PlayerAmount").val() >= 3) {
+                if ($("#SP1").val() == $("#SP2").val() || $("#SP1").val() == $("#SP3").val() || $("#SP2").val() == $("#SP3").val()) {
+                    alert("玩家名稱重複");
+                    x = 1;
+                } else if ($("#PlayerAmount").val() >= 4) {
+                    if ($("#SP4").val() == $("#SP1").val() || $("#SP4").val() == $("#SP2").val() || $("#SP4").val() == $("#SP3").val()) {
+                        alert("玩家名稱重複");
+                        x = 1;
+                    } else if ($("#PlayerAmount").val() == 5) {
+                        if ($("#SP5").val() == $("#SP4").val() || $("#SP5").val() == $("#SP3").val() || $("#SP5").val() == $("#SP2").val() || $("#SP5").val() == $("#SP1").val()) {
+                            alert("玩家名稱重複");
+                            x = 1;
+                        }
+                    }
+                }
+            }
+
+            if ($("#PlayerAmount").val() >= 3) {
+                if ($("#SH1").val() == $("#SH2").val() || $("#SH1").val() == $("#SH3").val() || $("#SH2").val() == $("#SH3").val()) {
+                    alert("英雄名稱重複");
+                    x = 1;
+                } else if ($("#PlayerAmount").val() >= 4) {
+                    if ($("#SH4").val() == $("#SH1").val() || $("#SH4").val() == $("#SH2").val() || $("#SH4").val() == $("#SH3").val()) {
+                        alert("英雄名稱重複");
+                        x = 1;
+                    } else if ($("#PlayerAmount").val() == 5) {
+                        if ($("#SH5").val() == $("#SH4").val() || $("#SH5").val() == $("#SH3").val() || $("#SH5").val() == $("#SH2").val() || $("#SH5").val() == $("#SH1").val()) {
+                            alert("英雄名稱重複");
+                            x = 1;
+                        }
+                    }
+                }
+            }
+
+            if (x == 0) {
+                document.getElementById("SubmitButton").style.display = "block";
+            }
+            if (x == 1) {
+                document.getElementById("SubmitButton").style.display = "none";
+            }
+        }
+
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

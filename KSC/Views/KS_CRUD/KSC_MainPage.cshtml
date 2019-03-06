@@ -1,0 +1,228 @@
+﻿
+@{
+    ViewBag.Title = "KSC_MainPage";
+
+}
+
+
+@*<div>
+    <p>
+        @Html.ActionLink("新增", "Create")
+        @Html.ActionLink("查詢", "Research")
+    </p>
+</div>*@
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <strong><font color="white" size="5">首頁</font></strong>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+               
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<html>
+<head>
+    <title><font color="#BABABA">慈善尾刀王大賽</font></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="~/assets/css/main.css" />
+
+</head>
+<body class="is-preload" style="background-color:dimgray">
+
+
+    <!-- Header -->
+    @*<header id="header">
+        <font color="white"><strong>首頁</strong></font>
+
+         @*<nav>
+             <a href="#menu">Menu</a>
+         </nav>*@
+    @*</header>*@
+
+    <!-- Nav -->
+    @*<nav id="menu">
+        <ul class="links">*@
+    @*<li><a href="index.html">Home</a></li>
+        <li><a href="elements.html">Elements</a></li>
+        <li><a href="generic.html">Generic</a></li>*@
+    @*</ul>
+        </nav>*@
+
+    <!-- Banner -->
+    <!-- Highlights -->
+    <section class="wrapper">
+        <div class="inner">
+            <header class="special">
+                <h1 style="font-family:Microsoft JhengHei;font-size:80px"><strong><font color="orange">超世紀慈善尾刀王大賽</font></strong></h1>     
+                @*<p style="font-family:Microsoft JhengHei"><font color="white">尾刀讚讚讚</font></p>*@
+            </header>
+            <div class="highlights">
+                <section>
+                    <div class="content" style="background-color:#1C1C1C">
+                        <header>
+                            <a href="@Url.Action("Create", "KS_CRUD")" class="icon fa-vcard-o"><span class="label">Icon</span></a>
+                            <h3 style="font-family:Microsoft JhengHei;font-size:30px"><strong><font color="#FF3B3B">新增遊戲資料</font></strong></h3>
+                        </header>
+                        <p></p>
+                    </div>
+                </section>
+                <section>
+                    <div class="content" style="background-color:#1C1C1C">
+                        <header>
+                            <a href="@Url.Action("ViewPersonalAchievement", "KS_CRUD")" class="icon fa-files-o"><span class="label">Icon</span></a>
+                            <h3 style="font-family:Microsoft JhengHei;font-size:30px"><strong><font color="#FF3B3B">個人獎項資料</font></strong></h3>
+                        </header>
+                        <p></p>
+                    </div>
+                </section>
+                <section>
+                    <div class="content" style="background-color:#1C1C1C">
+                        <header>
+                            <a @*href="@Url.Action("Personal_KS_King_PartialView", "KS_CRUD")"*@ class="icon fa-floppy-o"><span class="label">Icon</span></a>
+                            <h3 style="font-family:Microsoft JhengHei;font-size:30px"><strong><font color="#FF3B3B">團體獎項資料</font></strong></h3>
+                        </header>
+                        <p></p>
+                    </div>
+                </section>
+                <section>
+                    <div class="content" style="background-color:#1C1C1C">
+                        <header>
+                            <a href="@Url.Action("ViewPlayerData", "KS_CRUD")" class="icon fa-line-chart"><span class="label">Icon</span></a>
+                            <h3 style="font-family:Microsoft JhengHei;font-size:30px"><strong><font color="#FF3B3B">玩家個人數據</font></strong></h3>
+                        </header>
+                        <p></p>
+                    </div>
+                </section>
+                <section>
+                    <div class="content" style="background-color:#1C1C1C">
+                        <header>
+                            <a href="@Url.Action("RecordCompare", "KS_CRUD")" class="icon fa-paper-plane-o"><span class="label">Icon</span></a>
+                            <h3 style="font-family:Microsoft JhengHei;font-size:30px"><strong><font color="#FF3B3B">紀錄比較區</font></strong></h3>
+                        </header>
+                        <p></p>
+                    </div>
+                </section>
+                <section>
+                    <div class="content" style="background-color:#1C1C1C">
+                        <header>
+                            <a href="#" class="icon fa-qrcode"><span class="label">Icon</span></a>
+                            <h3 style="font-family:Microsoft JhengHei;font-size:30px"><strong><font color="#FF3B3B">尚未開發</font></strong></h3>
+                        </header>
+                        <p>尚未開發</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    @*<!-- CTA -->
+        <section id="cta" class="wrapper">
+            <div class="inner">
+                <h2>Curabitur ullamcorper ultricies</h2>
+                <p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="wrapper">
+            <div class="inner">
+                <header class="special">
+                    <h2>Faucibus consequat lorem</h2>
+                    <p>In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim aliquet. Accumsan ac integer lobortis commodo ornare aliquet accumsan erat tempus amet porttitor.</p>
+                </header>
+                <div class="testimonials">
+                    <section>
+                        <div class="content">
+                            <blockquote>
+                                <p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
+                            </blockquote>
+                            <div class="author">
+                                <div class="image">
+                                    <img src="images/pic01.jpg" alt="" />
+                                </div>
+                                <p class="credit">- <strong>Jane Doe</strong> <span>CEO - ABC Inc.</span></p>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="content">
+                            <blockquote>
+                                <p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
+                            </blockquote>
+                            <div class="author">
+                                <div class="image">
+                                    <img src="images/pic03.jpg" alt="" />
+                                </div>
+                                <p class="credit">- <strong>John Doe</strong> <span>CEO - ABC Inc.</span></p>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="content">
+                            <blockquote>
+                                <p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
+                            </blockquote>
+                            <div class="author">
+                                <div class="image">
+                                    <img src="images/pic02.jpg" alt="" />
+                                </div>
+                                <p class="credit">- <strong>Janet Smith</strong> <span>CEO - ABC Inc.</span></p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>*@
+
+    <!-- Footer -->
+    @*<div class="inner">
+            <div class="content">
+                <section>
+                    <h3>Accumsan montes viverra</h3>
+                    <p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+                </section>
+                <section>
+                    <h4>Sem turpis amet semper</h4>
+                    <ul class="alt">
+                        <li><a href="#">Dolor pulvinar sed etiam.</a></li>
+                        <li><a href="#">Etiam vel lorem sed amet.</a></li>
+                        <li><a href="#">Felis enim feugiat viverra.</a></li>
+                        <li><a href="#">Dolor pulvinar magna etiam.</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h4>Magna sed ipsum</h4>
+                    <ul class="plain">
+                        <li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+                        <li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+                        <li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+                        <li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+                    </ul>
+                </section>
+            </div>
+            <div class="copyright">
+                &copy; Untitled. Photos <a href="https://unsplash.co">Unsplash</a>, Video <a href="https://coverr.co">Coverr</a>.
+            </div>
+        </div>*@
+
+
+    <!-- Scripts -->
+
+    <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
+</body>
+</html>

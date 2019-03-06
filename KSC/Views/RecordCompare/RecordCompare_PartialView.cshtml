@@ -1,0 +1,93 @@
+﻿@model KSC.Models.RecordCompareViewModel
+
+
+<form method="get" class="form-horizontal">
+    <div class="col-lg-12">
+        <table width="100%" border="1" cellspacing="0" cellpadding="2">
+
+            <tr>
+                <td width="20%" class="field-name">玩家名稱</td>
+                <td width="30%" class="field-value">@Model.PlayerName</td>
+                <td class="field-name">出戰場次</td>
+                <td class="field-value">@Model.GameAmount</td>
+            </tr>
+            <tr>
+                <td class="field-name">總計殺人數</td>
+                <td class="field-value">@Model.Total_Kill</td>
+                <td class="field-name">平均殺人數</td>
+                <td class="field-value">@Model.Avr_Kill</td>
+            </tr>
+            <tr>
+                <td class="field-name">總計死亡數</td>
+                <td class="field-value">@Model.Total_Death</td>
+                <td class="field-name">平均死亡數</td>
+                <td class="field-value">@Model.Avr_Death</td>
+            </tr>
+            <tr>
+                <td class="field-name">總計助攻數</td>
+                <td class="field-value">@Model.Total_Assist</td>
+                <td class="field-name">平均助攻數</td>
+                <td class="field-value">@Model.Avr_Assist</td>
+            </tr>
+        </table>
+        <br />
+
+           (全玩家)   排行榜數據
+        <table width="100%" border="1" cellspacing="0" cellpadding="2">
+            <tr>
+                <td>
+                    <table width="100%" id="BK3_1_ContentTableHeader" border="1" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="180" class="field-name-grid field-height"><span style="font-weight:bold">尾刀王(傷害/擊殺)</span></td>
+                            <td width="180" class="field-name-grid field-height"><span style="font-weight:bold">慈善王(傷害/擊殺)</span></td>
+                            <td width="180" class="field-name-grid field-height"><span style="font-weight:bold">海邊王(團戰參與率)</span></td>
+                            <td width="180" class="field-name-grid field-height"><span style="font-weight:bold">散步王(團戰參與率)</span></td>
+                            <td width="180" class="field-name-grid field-height"><span style="font-weight:bold">來扛的(扛傷/死亡)</span></td>
+                            <td width="180" class="field-name-grid field-height"><span style="font-weight:bold">來賣的(扛傷/死亡)</span></td>
+                            <td width="180" class="field-name-grid field-height"><span style="font-weight:bold">KDA紀錄</span></td>
+                        </tr>
+                        <tr>
+                            <td width="180" class="right-field-value-grid field-height">@Model.Rank_Column1</td>
+                            <td width="180" class="right-field-value-grid field-height">@Model.Rank_Column2</td>
+                            <td width="180" class="right-field-value-grid field-height">@Model.Rank_Column3%</td>
+                            <td width="180" class="right-field-value-grid field-height">@Model.Rank_Column4%</td>
+                            <td width="180" class="right-field-value-grid field-height">@Model.Rank_Column5</td>
+                            <td width="180" class="right-field-value-grid field-height">@Model.Rank_Column6</td>
+                            <td width="180" class="right-field-value-grid field-height">@Model.Rank_Column7</td>
+                        </tr>
+                    </table>
+
+
+                </td>
+            </tr>
+        </table>
+        <br>
+        @Model.PlayerName 歷史最佳數據
+        <table width="100%" border="1" cellspacing="0" cellpadding="2">
+            <tr>
+                <td>
+                    <table width="100%" id="BK3_1_ContentTableHeader" border="1" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="180" class="field-name-grid field-height"><span style="font-weight:bold">尾刀王(傷害/擊殺)</span></td>
+                            <td width="180" class="field-name-grid field-height"><span style="font-weight:bold">慈善王(傷害/擊殺)</span></td>
+                            <td width="180" class="field-name-grid field-height"><span style="font-weight:bold">海邊王(團戰參與率)</span></td>
+                            <td width="180" class="field-name-grid field-height"><span style="font-weight:bold">散步王(團戰參與率)</span></td>
+                            <td width="180" class="field-name-grid field-height"><span style="font-weight:bold">來扛的(扛傷/死亡)</span></td>
+                            <td width="180" class="field-name-grid field-height"><span style="font-weight:bold">來賣的(扛傷/死亡)</span></td>
+                            <td width="180" class="field-name-grid field-height"><span style="font-weight:bold">KDA紀錄</span></td>
+                        </tr>
+                        <tr>
+                            <td width="180" class="right-field-value-grid field-height">@Model.Self_Column1</td>
+                            <td width="180" class="right-field-value-grid field-height">@Model.Self_Column2</td>
+                            <td width="180" class="right-field-value-grid field-height">@Model.Self_Column3%</td>
+                            <td width="180" class="right-field-value-grid field-height">@Model.Self_Column4%</td>
+                            <td width="180" class="right-field-value-grid field-height">@Model.Self_Column5</td>
+                            <td width="180" class="right-field-value-grid field-height">@Model.Self_Column6</td>
+                            <td width="180" class="right-field-value-grid field-height">@Model.Self_Column7</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>

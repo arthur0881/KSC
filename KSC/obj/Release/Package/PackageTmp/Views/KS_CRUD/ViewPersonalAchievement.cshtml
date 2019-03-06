@@ -1,0 +1,353 @@
+﻿@model IEnumerable<KSC.Models.PersonalAchievementViewModel>
+
+@{
+    ViewBag.Title = "ViewPersonalAchievement";
+}
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <font color="#FFF2F2" size="5"><strong>個人獎項列表</strong></font>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("返回首頁", "KSC_MainPage", "KS_CRUD", new { area = "" }, new { @class = "navbar-brand" })</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="form-group">
+
+    <table width="100%" border="1" cellspacing="0" cellpadding="2">
+        <tr style="height: 70px">
+            <th width="20%" class="field-name" style="background-color:lightcoral">個人獎項</th>
+            <td class="field-name" width="50%" >
+                <select style="width:90%; height:80%" id="Select">
+                    <option id="00" value="00">請選擇獎項</option>
+                    <option id="01" value="01">尾刀王&慈善王</option>
+                    <option id="02" value="02">海邊王&散步王</option>
+                    <option id="03" value="03">來扛的&來賣的</option>
+                    <option id="04" value="04">最高KDA&最低KDA</option>
+                </select>
+            </td>
+            <th width="10%" class="field-name" style="background-color:lightcoral">單項數據紀錄</th>
+            <td class="field-name" width="20%">
+                <input class="btn btn-primary " width="50%" type="button" id="P_SR" value="單項數據紀錄" />
+
+            </td>
+        </tr>
+    </table>
+</div>*@
+
+<div class="form-group">
+
+    <table width="100%" border="1" cellspacing="0" cellpadding="2">
+        <tr style="height: 70px">
+            <th width="10%" class="field-name" style="background-color:lightcoral;text-align:center" >個人獎項</th>
+            <td class="field-name" width="60%">
+
+                <input class="btn btn-primary " style="width:23%; margin-left:3px;margin-right:3px;margin-top:2px;margin-bottom:2px" type="button" id="PA01" value="尾刀王&慈善王" />
+                <input class="btn btn-primary " style="width:23%; margin-left:3px;margin-right:3px;margin-top:2px;margin-bottom:2px" type="button" id="PA02" value="海邊王&散步王" />
+                <input class="btn btn-primary " style="width:23%; margin-left:3px;margin-right:3px;margin-top:2px;margin-bottom:2px" type="button" id="PA03" value="來扛的&來賣的" />
+                <input class="btn btn-primary " style="width:23%; margin-left:3px;margin-right:3px;margin-top:2px;margin-bottom:2px" type="button" id="PA04" value="KDA紀錄" />
+            </td>
+            <th width="10%" class="field-name" style="background-color:lightcoral;text-align:center">單項數據紀錄</th>
+            <td class="field-name" width="20%">
+                <input class="btn btn-primary " style="width:80%;margin-left:2px;margin-right:2px;margin-top:2px;margin-bottom:2px" type="button" id="P_SR" value="單項數據紀錄" />
+
+            </td>
+        </tr>
+    </table>
+</div>
+
+<body style="background-color:#C4C4C4">
+    <div id="PA_Group" style="display:block">
+        <div id="Personal_KS_Most" style="display:none"></div>
+        <div id="Personal_KS_Less" style="display:none"></div>
+        <div id="Personal_KP_Most" style="display:none"></div>
+        <div id="Personal_KP_Less" style="display:none"></div>
+        <div id="Personal_BeDamagePerDeath_Most" style="display:none"></div>
+        <div id="Personal_BeDamagePerDeath_Less" style="display:none"></div>
+        <div id="Personal_KDA_Most" style="display:none"></div>
+        <div id="Personal_KDA_Less" style="display:none"></div>
+    </div>
+
+    <div id="PS_Group" style="display:none">
+        <div id="Personal_Kill" style="display:block"></div>
+        <div id="Personal_Assist" style="display:block"></div>
+        <div id="Personal_Death" style="display:block"></div>
+        <div id="Personal_Damage" style="display:block"></div>
+        <div id="Personal_BeDamage" style="display:block"></div>
+    </div>
+</body>
+
+    @section scripts
+{
+        <script type="text/javascript">
+            //$(document).ready(function () {
+            //    $('#Select').change(function () {
+            //        document.getElementById("PA_Group").style.display = "block";
+            //        document.getElementById("PS_Group").style.display = "none";
+            //        //尾刀慈善
+            //        if ($('#Select').val() == "01") {
+            //            document.getElementById("Personal_KS_Most").style.display = "block";
+            //            document.getElementById("Personal_KS_Less").style.display = "block";
+            //            $.ajax({
+            //                type: "POST",
+            //                url: "/PersonalAchievement/Personal_KS_Most_PartialView/",
+            //                success: function (viewHTML) {
+            //                    $("#Personal_KS_Most").html(viewHTML);
+            //                },
+            //            });
+
+            //            $.ajax({
+            //                type: "POST",
+            //                url: "/PersonalAchievement/Personal_KS_Less_PartialView/",
+            //                success: function (viewHTML) {
+            //                    $("#Personal_KS_Less").html(viewHTML);
+            //                },
+            //            });
+            //        }
+            //        if ($('#Select').val() != "01") {
+            //            document.getElementById("Personal_KS_Most").style.display = "none";
+            //            document.getElementById("Personal_KS_Less").style.display = "none";
+            //        }
+            //        ///海邊散步
+            //        if ($('#Select').val() == "02") {
+            //            document.getElementById("Personal_KP_Most").style.display = "block";
+            //            document.getElementById("Personal_KP_Less").style.display = "block";
+            //            $.ajax({
+            //                type: "POST",
+            //                url: "/PersonalAchievement/Personal_KillParticipate_Most_PartialView/",
+            //                success: function (viewHTML) {
+            //                    $("#Personal_KP_Most").html(viewHTML);
+            //                },
+            //            });
+            //            $.ajax({
+            //                type: "POST",
+            //                url: "/PersonalAchievement/Personal_KillParticipate_Less_PartialView/",
+            //                success: function (viewHTML) {
+            //                    $("#Personal_KP_Less").html(viewHTML);
+            //                },
+            //            });
+            //        }
+            //        if ($('#Select').val() != "02") {
+            //            document.getElementById("Personal_KP_Most").style.display = "none";
+            //            document.getElementById("Personal_KP_Less").style.display = "none";
+            //        }
+            //        ///扛傷害&來賣的
+            //        if ($('#Select').val() == "03") {
+            //            document.getElementById("Personal_BeDamagePerDeath_Most").style.display = "block";
+            //            document.getElementById("Personal_BeDamagePerDeath_Less").style.display = "block";
+            //            $.ajax({
+            //                type: "POST",
+            //                url: "/PersonalAchievement/Personal_BeDamagePerDeath_Most_PartialView/",
+            //                success: function (viewHTML) {
+            //                    $("#Personal_BeDamagePerDeath_Most").html(viewHTML);
+            //                },
+            //            });
+            //            $.ajax({
+            //                type: "POST",
+            //                url: "/PersonalAchievement/Personal_BeDamagePerDeath_Less_PartialView/",
+            //                success: function (viewHTML) {
+            //                    $("#Personal_BeDamagePerDeath_Less").html(viewHTML);
+            //                },
+            //            });
+            //        }
+            //        if ($('#Select').val() != "03") {
+            //            document.getElementById("Personal_BeDamagePerDeath_Most").style.display = "none";
+            //            document.getElementById("Personal_BeDamagePerDeath_Less").style.display = "none";
+            //        }
+            //        ///高KDA&低KDA
+            //        if ($('#Select').val() == "04") {
+            //            document.getElementById("Personal_KDA_Most").style.display = "block";
+            //            document.getElementById("Personal_KDA_Less").style.display = "block";
+            //            $.ajax({
+            //                type: "POST",
+            //                url: "/PersonalAchievement/Personal_KDA_Most_PartialView/",
+            //                success: function (viewHTML) {
+            //                    $("#Personal_KDA_Most").html(viewHTML);
+            //                },
+            //            });
+            //            $.ajax({
+            //                type: "POST",
+            //                url: "/PersonalAchievement/Personal_KDA_Less_PartialView/",
+            //                success: function (viewHTML) {
+            //                    $("#Personal_KDA_Less").html(viewHTML);
+            //                },
+            //            });
+            //        }
+            //        if ($('#Select').val() != "04") {
+            //            document.getElementById("Personal_KDA_Most").style.display = "none";
+            //            document.getElementById("Personal_KDA_Less").style.display = "none";
+            //        }
+
+            //    });
+            $(document).ready(function () {
+
+                    //尾刀慈善
+                $('#PA01').click(function () {
+
+                    document.getElementById("PA_Group").style.display = "block";
+                    document.getElementById("PS_Group").style.display = "none";
+                    document.getElementById("Personal_KS_Most").style.display = "block";
+                    document.getElementById("Personal_KS_Less").style.display = "block";
+                    document.getElementById("Personal_KP_Most").style.display = "none";
+                    document.getElementById("Personal_KP_Less").style.display = "none";
+                    document.getElementById("Personal_BeDamagePerDeath_Most").style.display = "none";
+                    document.getElementById("Personal_BeDamagePerDeath_Less").style.display = "none";
+                    document.getElementById("Personal_KDA_Most").style.display = "none";
+                    document.getElementById("Personal_KDA_Less").style.display = "none";
+                    $.ajax({
+                        type: "POST",
+                        url: "/PersonalAchievement/Personal_KS_Most_PartialView/",
+                        success: function (viewHTML) {
+                            $("#Personal_KS_Most").html(viewHTML);
+                        },
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/PersonalAchievement/Personal_KS_Less_PartialView/",
+                        success: function (viewHTML) {
+                            $("#Personal_KS_Less").html(viewHTML);
+                        },
+                    });
+                });
+
+                    ///海邊散步
+               $('#PA02').click(function () {
+                   document.getElementById("PA_Group").style.display = "block";
+                   document.getElementById("PS_Group").style.display = "none";
+                   document.getElementById("Personal_KS_Most").style.display = "none";
+                   document.getElementById("Personal_KS_Less").style.display = "none";
+                   document.getElementById("Personal_KP_Most").style.display = "block";
+                   document.getElementById("Personal_KP_Less").style.display = "block";
+                   document.getElementById("Personal_BeDamagePerDeath_Most").style.display = "none";
+                   document.getElementById("Personal_BeDamagePerDeath_Less").style.display = "none";
+                   document.getElementById("Personal_KDA_Most").style.display = "none";
+                   document.getElementById("Personal_KDA_Less").style.display = "none";
+                        $.ajax({
+                            type: "POST",
+                            url: "/PersonalAchievement/Personal_KillParticipate_Most_PartialView/",
+                            success: function (viewHTML) {
+                                $("#Personal_KP_Most").html(viewHTML);
+                            },
+                        });
+                        $.ajax({
+                            type: "POST",
+                            url: "/PersonalAchievement/Personal_KillParticipate_Less_PartialView/",
+                            success: function (viewHTML) {
+                                $("#Personal_KP_Less").html(viewHTML);
+                            },
+                        });
+               });
+
+                    ///扛傷害&來賣的
+                $('#PA03').click(function () {
+                    document.getElementById("PA_Group").style.display = "block";
+                    document.getElementById("PS_Group").style.display = "none";
+                    document.getElementById("Personal_KS_Most").style.display = "none";
+                    document.getElementById("Personal_KS_Less").style.display = "none";
+                    document.getElementById("Personal_KP_Most").style.display = "none";
+                    document.getElementById("Personal_KP_Less").style.display = "none";
+                    document.getElementById("Personal_BeDamagePerDeath_Most").style.display = "block";
+                    document.getElementById("Personal_BeDamagePerDeath_Less").style.display = "block";
+                    document.getElementById("Personal_KDA_Most").style.display = "none";
+                    document.getElementById("Personal_KDA_Less").style.display = "none";
+                        $.ajax({
+                            type: "POST",
+                            url: "/PersonalAchievement/Personal_BeDamagePerDeath_Most_PartialView/",
+                            success: function (viewHTML) {
+                                $("#Personal_BeDamagePerDeath_Most").html(viewHTML);
+                            },
+                        });
+                        $.ajax({
+                            type: "POST",
+                            url: "/PersonalAchievement/Personal_BeDamagePerDeath_Less_PartialView/",
+                            success: function (viewHTML) {
+                                $("#Personal_BeDamagePerDeath_Less").html(viewHTML);
+                            },
+                        });
+                });
+
+                    ///高KDA&低KDA
+                 $('#PA04').click(function () {
+                     document.getElementById("PA_Group").style.display = "block";
+                     document.getElementById("PS_Group").style.display = "none";
+                     document.getElementById("Personal_KS_Most").style.display = "none";
+                     document.getElementById("Personal_KS_Less").style.display = "none";
+                     document.getElementById("Personal_KP_Most").style.display = "none";
+                     document.getElementById("Personal_KP_Less").style.display = "none";
+                     document.getElementById("Personal_BeDamagePerDeath_Most").style.display = "none";
+                     document.getElementById("Personal_BeDamagePerDeath_Less").style.display = "none";
+                     document.getElementById("Personal_KDA_Most").style.display = "block";
+                     document.getElementById("Personal_KDA_Less").style.display = "block";
+                        $.ajax({
+                            type: "POST",
+                            url: "/PersonalAchievement/Personal_KDA_Most_PartialView/",
+                            success: function (viewHTML) {
+                                $("#Personal_KDA_Most").html(viewHTML);
+                            },
+                        });
+                        $.ajax({
+                            type: "POST",
+                            url: "/PersonalAchievement/Personal_KDA_Less_PartialView/",
+                            success: function (viewHTML) {
+                                $("#Personal_KDA_Less").html(viewHTML);
+                            },
+                        });
+                 });
+
+                //個人單項數據
+                $('#P_SR').click(function () {
+                    document.getElementById("PA_Group").style.display = "none";
+                    document.getElementById("PS_Group").style.display = "block";
+                    $.ajax({
+                        type: "POST",
+                        url: "/PersonalAchievement/Personal_Kill_PartialView/",
+                        success: function (viewHTML) {
+                            $("#Personal_Kill").html(viewHTML);
+                        },
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/PersonalAchievement/Personal_Assist_PartialView/",
+                        success: function (viewHTML) {
+                            $("#Personal_Assist").html(viewHTML);
+                        },
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/PersonalAchievement/Personal_Death_PartialView/",
+                        success: function (viewHTML) {
+                            $("#Personal_Death").html(viewHTML);
+                        },
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/PersonalAchievement/Personal_Damage_PartialView/",
+                        success: function (viewHTML) {
+                            $("#Personal_Damage").html(viewHTML);
+                        },
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/PersonalAchievement/Personal_BeDamage_PartialView/",
+                        success: function (viewHTML) {
+                            $("#Personal_BeDamage").html(viewHTML);
+                        },
+                    });
+                });
+
+            });
+
+        </script>
+        @Scripts.Render("~/bundles/jqueryval")
+    }

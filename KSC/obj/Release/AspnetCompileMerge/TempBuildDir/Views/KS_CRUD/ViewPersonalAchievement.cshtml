@@ -1,0 +1,67 @@
+﻿@model IEnumerable<KSC.Models.PersonalAchievementViewModel>
+
+@{
+    ViewBag.Title = "ViewPersonalAchievement";
+}
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <font color="#FFF2F2" size="5"><strong>個人獎項列表</strong></font>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("返回首頁", "KSC_MainPage", "KS_CRUD", new { area = "" }, new { @class = "navbar-brand" })</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+@*<input class="btn btn-primary " type="submit" id="KS_KING" value="新增" />*@
+
+<div id="Personal_KS_Most"></div>
+<div id="Personal_KS_Less"></div>
+<div id="Personal_KP_Most"></div>
+<div id="Personal_KP_Less"></div>
+
+
+
+@section scripts
+{
+    <script>
+
+        $(document).ready(function () {
+                            $.ajax({
+                                type: "POST",
+                                url: "/KS_CRUD/Personal_KS_Most_PartialView/",
+                                success: function (viewHTML) {
+                                    $("#Personal_KS_Most").html(viewHTML);
+                                },
+                            });
+                            $.ajax({
+                                type: "POST",
+                                url: "/KS_CRUD/Personal_KS_Less_PartialView/",
+                                success: function (viewHTML) {
+                                    $("#Personal_KS_Less").html(viewHTML);
+                                },
+                            });
+                            $.ajax({
+                                type: "POST",
+                                url: "/KS_CRUD/Personal_KillParticipate_Most_PartialView/",
+                                success: function (viewHTML) {
+                                    $("#Personal_KP_Most").html(viewHTML);
+                                },
+                            });
+                            $.ajax({
+                                type: "POST",
+                                url: "/KS_CRUD/Personal_KillParticipate_Less_PartialView/",
+                                success: function (viewHTML) {
+                                    $("#Personal_KP_Less").html(viewHTML);
+                                },
+                            });
+
+                    });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
